@@ -1,0 +1,12 @@
+{% extends 'account/base_account.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block account_content %}
+<h2>Create an account</h2>
+<p>Use your campus username to keep posts organized.</p>
+<form method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn primary" type="submit">Sign up</button>
+</form>
+<p class="helper">Already have an account? <a class="link" href="{% url 'account_login' %}">Login</a></p>
+{% endblock %}

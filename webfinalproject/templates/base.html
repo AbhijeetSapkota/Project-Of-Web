@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Campus Exchange{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'mainapp/styles.css' %}">
+    <script defer src="{% static 'mainapp/app.js' %}"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="brand">
+            <a href="{% url 'home' %}">Campus Exchange</a>
+            <span class="tagline">Lost items. Found items. Honest confessions.</span>
+        </div>
+        <nav class="nav-links">
+            <a href="{% url 'home' %}" class="nav-item">Feed</a>
+            <a href="{% url 'create_post' %}" class="nav-item">New Post</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'my_posts' %}" class="nav-item">My Posts</a>
+                <a href="{% url 'account_logout' %}" class="nav-item">Logout</a>
+            {% else %}
+                <a href="{% url 'account_login' %}" class="nav-item">Login</a>
+                <a href="{% url 'account_signup' %}" class="nav-item">Sign Up</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main class="page">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="site-footer">
+        <p>Built for students. Posts are moderated by the community.</p>
+    </footer>
+</body>
+</html>

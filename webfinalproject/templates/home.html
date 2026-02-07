@@ -1,12 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1> Welcome to Home Page of Web Final Project</h1>
+{% extends 'base.html' %}
+{% block title %}Campus Exchange{% endblock %}
+{% block content %}
+<section class="hero">
+    <div>
+        <h1>Post lost & found updates or anonymous confessions.</h1>
+        <p>Search campus updates fast, share what you know, and keep it honest.</p>
+        <div class="hero-actions">
+            <a class="btn primary" href="{% url 'create_post' %}">Create a post</a>
+            <a class="btn ghost" href="{% url 'account_login' %}">Login</a>
+        </div>
+    </div>
+    <div class="hero-card">
+        <h3>Quick Filters</h3>
+        <div class="filter-grid">
+            <a class="filter-pill" href="{% url 'category_feed' 'lost' %}">Lost</a>
+            <a class="filter-pill" href="{% url 'category_feed' 'found' %}">Found</a>
+            <a class="filter-pill" href="{% url 'category_feed' 'confession' %}">Confessions</a>
+            <a class="filter-pill" href="{% url 'home' %}">All Posts</a>
+        </div>
+    </div>
+</section>
 
-</body>
-</html>
+<section class="feed">
+    <div class="section-header">
+        <h2>Latest Posts</h2>
+        {% if category %}
+            <span class="badge">Filtered</span>
+        {% endif %}
+    </div>
+    <div class="post-grid">
+        {% for post in posts %}
+            <article class="post-card">
+                <div class="post-meta">
+                    <span class="category">{{ post.get_category_display }}</span>
+                    <span class="timestamp">{{ post.created_at|date:"M d, Y" }}</span>
+                </div>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.description|truncatechars:160 }}</p>
+                <div class="post-footer">
+                    <span class="author">
+                        {% if post.is_anonymous %}
+                            Anonymous
+                        {% else %}
+                            {{ post.user.username }}
+                        {% endif %}
+                    </span>
+                    <a class="link" href="{% url 'post_detail' post.pk %}">View</a>
+                </div>
+            </article>
+        {% empty %}
+            <p class="empty">No posts yet. Be the first to share.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

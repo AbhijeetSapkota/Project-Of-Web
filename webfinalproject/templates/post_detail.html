@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Post Detail{% endblock %}
+{% block content %}
+<section class="detail">
+    <article class="detail-card">
+        <div class="post-meta">
+            <span class="category">{{ post.get_category_display }}</span>
+            <span class="timestamp">{{ post.created_at|date:"M d, Y" }}</span>
+        </div>
+        <h2>{{ post.title }}</h2>
+        <p class="detail-body">{{ post.description }}</p>
+        {% if post.location %}
+            <p class="detail-item"><strong>Location:</strong> {{ post.location }}</p>
+        {% endif %}
+        {% if post.contact_info %}
+            <p class="detail-item"><strong>Contact:</strong> {{ post.contact_info }}</p>
+        {% endif %}
+        <div class="post-footer">
+            <span class="author">
+                {% if post.is_anonymous %}
+                    Anonymous
+                {% else %}
+                    {{ post.user.username }}
+                {% endif %}
+            </span>
+            <a class="link" href="{% url 'home' %}">Back to feed</a>
+        </div>
+    </article>
+</section>
+{% endblock %}
