@@ -18,11 +18,4 @@ class PostForm(forms.ModelForm):
         }
 
     def clean(self):
-        cleaned = super().clean()
-        category = cleaned.get('category')
-
-        if category == Post.CATEGORY_CONFESSION:
-            cleaned['location'] = ''
-            cleaned['contact_info'] = ''
-
-        return cleaned
+        return super().clean()

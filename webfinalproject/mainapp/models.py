@@ -5,12 +5,10 @@ from django.db import models
 class Post(models.Model):
     CATEGORY_LOST = 'LOST'
     CATEGORY_FOUND = 'FOUND'
-    CATEGORY_CONFESSION = 'CONFESSION'
 
     CATEGORY_CHOICES = [
         (CATEGORY_LOST, 'Lost'),
         (CATEGORY_FOUND, 'Found'),
-        (CATEGORY_CONFESSION, 'Confession'),
     ]
 
     user = models.ForeignKey(

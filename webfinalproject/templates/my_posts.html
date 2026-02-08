@@ -23,7 +23,7 @@
                             {{ post.user.username }}
                         {% endif %}
                     </span>
-                    <a class="link" href="{% url 'post_detail' post.pk %}">View</a>
+                    <a class="link" href="{% url 'post_detail' %}?id={{ post.pk }}">View</a>
                 </div>
             </article>
         {% empty %}

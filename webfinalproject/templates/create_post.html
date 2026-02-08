@@ -4,7 +4,7 @@
 <section class="form-wrapper">
     <div class="form-card">
         <h2>Create a Post</h2>
-        <p>Select the category that matches your post. Confessions default to anonymous.</p>
+        <p>Share simple details.</p>
         <form method="post">
             {% csrf_token %}
             <div class="form-grid">
@@ -16,7 +16,7 @@
                     <label for="{{ form.title.id_for_label }}">Title</label>
                     {{ form.title }}
                 </div>
-                <div class="form-field full">
+                <div class="form-field">
                     <label for="{{ form.description.id_for_label }}">Details</label>
                     {{ form.description }}
                 </div>
@@ -33,7 +33,7 @@
                     <label for="{{ form.is_anonymous.id_for_label }}">Post anonymously</label>
                 </div>
             </div>
-            <button class="btn primary" type="submit">Publish</button>
+            <button class="btn" type="submit">Publish</button>
         </form>
     </div>
 </section>

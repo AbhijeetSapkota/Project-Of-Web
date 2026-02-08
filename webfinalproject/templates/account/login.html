@@ -2,12 +2,11 @@
 {% load account %}
 {% block title %}Login{% endblock %}
 {% block account_content %}
-<h2>Welcome back</h2>
-<p>Log in to post or respond.</p>
+<h2>Login</h2>
 <form method="post" action="{% url 'account_login' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn primary" type="submit">Login</button>
+    <button type="submit">Login</button>
 </form>
-<p class="helper">No account? <a class="link" href="{% url 'account_signup' %}">Sign up</a></p>
+<p>No account? <a href="{% url 'account_signup' %}">Sign up</a></p>
 {% endblock %}

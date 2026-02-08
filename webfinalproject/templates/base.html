@@ -5,17 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Campus Exchange{% endblock %}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'mainapp/styles.css' %}">
-    <script defer src="{% static 'mainapp/app.js' %}"></script>
 </head>
 <body>
     <header class="site-header">
         <div class="brand">
             <a href="{% url 'home' %}">Campus Exchange</a>
-            <span class="tagline">Lost items. Found items. Honest confessions.</span>
+            <span class="tagline">Lost items and found items for students.</span>
         </div>
         <nav class="nav-links">
             <a href="{% url 'home' %}" class="nav-item">Feed</a>
@@ -33,7 +29,7 @@
         {% block content %}{% endblock %}
     </main>
     <footer class="site-footer">
-        <p>Built for students. Posts are moderated by the community.</p>
+        <p>Built for students. Keep it helpful.</p>
     </footer>
 </body>
 </html>

@@ -2,22 +2,19 @@
 {% block title %}Campus Exchange{% endblock %}
 {% block content %}
 <section class="hero">
-    <div>
-        <h1>Post lost & found updates or anonymous confessions.</h1>
-        <p>Search campus updates fast, share what you know, and keep it honest.</p>
-        <div class="hero-actions">
-            <a class="btn primary" href="{% url 'create_post' %}">Create a post</a>
+    <h1>Campus Lost & Found</h1>
+    <p>Simple posts to help find items around campus.</p>
+    <div class="hero-actions">
+        <a class="btn" href="{% url 'create_post' %}">Create a post</a>
+        {% if not user.is_authenticated %}
             <a class="btn ghost" href="{% url 'account_login' %}">Login</a>
-        </div>
+        {% endif %}
     </div>
-    <div class="hero-card">
-        <h3>Quick Filters</h3>
-        <div class="filter-grid">
-            <a class="filter-pill" href="{% url 'category_feed' 'lost' %}">Lost</a>
-            <a class="filter-pill" href="{% url 'category_feed' 'found' %}">Found</a>
-            <a class="filter-pill" href="{% url 'category_feed' 'confession' %}">Confessions</a>
-            <a class="filter-pill" href="{% url 'home' %}">All Posts</a>
-        </div>
+    <h3>Filters</h3>
+    <div class="filter-grid">
+        <a class="filter-pill" href="/?category=LOST">Lost</a>
+        <a class="filter-pill" href="/?category=FOUND">Found</a>
+        <a class="filter-pill" href="/">All</a>
     </div>
 </section>
 
@@ -45,7 +42,7 @@
                             {{ post.user.username }}
                         {% endif %}
                     </span>
-                    <a class="link" href="{% url 'post_detail' post.pk %}">View</a>
+                    <a class="link" href="{% url 'post_detail' %}?id={{ post.pk }}">View</a>
                 </div>
             </article>
         {% empty %}
